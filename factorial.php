@@ -10,8 +10,11 @@
 
 <?php
     $num=$_POST["Input"];
+   
     if(!is_numeric($num)||strpos($num,".")!==false){
     echo "Please input integer";
+    }else if ($num <0){
+        echo"Please input positive integer";
     }else{
 
         
