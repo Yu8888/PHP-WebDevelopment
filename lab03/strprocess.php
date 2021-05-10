@@ -17,8 +17,8 @@
         $ans="";
         $len= strlen($str);
         for($i =0;$i<$len;$i++){
-            $letter = substr($str,0,1);
-            if(!is_numeric(strpos("AEIOUaeiou","h"))){
+            $letter = substr($str,$i,1);
+            if(!is_numeric(strpos("AEIOUaeiou",$letter))){
                 $ans =$ans.$letter;
             }
         }
