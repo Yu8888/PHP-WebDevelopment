@@ -5,18 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <scrip type="text/javascript" src="ajax.js"> </scrip>
+    <scrip type="text/javascript" src="time.js"> </scrip>
+
 </head>
 <body>
     <h1>Customer Booking System</h1>
-    Customer Name:<input type="text" name="cname">
-    Phone Number:<input type="number" name="phone" maxlength= "12" minlength= "10">
-    Unit Number:<input type="number" name="phone" >
-    Street Number:<input type="number" name="phone" >
-    Street Name:<input type="text" name="phone" >
-    Suburb:<input type="number" name="phone" >
-    Destination Suburb:<input type="number" name="phone" >
-    Pick-up Date:<input type="number" name="phone" >
-    Pick-up Time:<input type="number" name="phone" >
+    <br> Name:<input type="text" name="cname"><br />
+    <br>Phone Number:<input type="text" name="phone" maxlength= "12" minlength= "10"><br />
+    <br>Unit Number:<input type="number" name="unnumber" ><br />
+    <br>Street Number:<input type="number" name="snumber" ><br />
+    <br>Street Name:<input type="text" name="stname" ><br />
+    <br>Suburb:<input type="text" name="sbname" ><br />
+    <br>Destination Suburb:<input type="text" name="dsbname" ><br />
+    
+    <br>Pick-up Date:<input type="text" name="date" id="today"><br />
+    
+    <br>Pick-up Time:<input type="text" name="phone" id="today1"> <br />
+<script type="text/javascript">
+    function today(){
+        var today=new Date();
+        var y=today.getFullYear();
+        var m=today.getMonth()+1;
+        var d=today.getDate();
+        if(m<10){
+        m = "0"+m;
+        }
+        if(d<10){
+        d = "0"+d;
+        }
+        return d+"-"+m+"-"+y; 
+}
+function today1(){
+        var today=new Date();
+        var H = today.getHours();
+        var M = today.getMinutes();
+        if(H<10){
+        H = "0"+H;
+        }
+        if(M<10){
+        M = "0"+M;
+        }
+        return H+":"+M; 
+}
+document.getElementById("today").value = today().toLocaleString();
+document.getElementById("today1").value = today1().toLocaleString();
+</script>
 
+   
+
+    
 </body>
-</html
+</html>

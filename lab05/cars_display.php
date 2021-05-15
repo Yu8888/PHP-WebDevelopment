@@ -11,7 +11,7 @@
             $sd_1="12";
             $sql_host = "cmslamp14.aut.ac.nz";
             $sql_user = "yxn9194";
-            $sql_pass = "mr.liu1009.";
+            $sql_pass = "";
             $sql_db = "yxn9194"            ;
             $conn = mysqli_connect($sql_host, $sql_user, $sql_pass, $sql_db);
             if ($conn->connect_error) {
