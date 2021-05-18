@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Booking Search</h1>
+    <form>
+    Search bookings: <input type="text" name="bsearch" class="2">
+    
+    </form>
+    <input type="submit" name="sbutton" value="Search" onclick="myFunction(father);return false;">
+    <div>
+        <p name='reference'></p>
+    </div>
+    <script>
+        function myFunction(callback) {
+            const p = document.querySelector('p');
+            var elements = document.getElementsByClassName("2");
+            var formData = new FormData();
+            for (var i = 0; i < elements.length; i++) {
+                formData.append(elements[i].name, elements[i].value);
+            }
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status >= 200) {
+                    //if the XHR runs successfully, the text will be showed in the place of labeled <p>.
+                    p.innerHTML = xmlHttp.responseText;
+                }
+            }
+            xmlHttp.open("POST", "searchSystem.php");
+            xmlHttp.send(formData);
+
+            setTimeout(callback, 2000);
+        }
+
+        function father(){
+    var i;
+    var td = document.querySelectorAll('.td');
+    var button = document.querySelectorAll('.button');
+
+
+ console.log("foreach starts");
+
+button.forEach(buttonfun)
+
+function buttonfun(btn,index){
+    const id =btn.id;
+    // btn.setAttribute('lock', `${index}`);
+    btn.addEventListener('click',function(){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function()
+        {
+
+            if(xmlHttp.readyState == 4 && xmlHttp.status >= 200)
+            { 
+                // var num = button[lock].lock;
+                // alert(xmlHttp.responseText);
+                td[index].innerHTML=xmlHttp.responseText;
+        }
+    }
+        xmlHttp.open("POST", "searchSystem.php"); 
+       
+        var data = new FormData();
+        
+        data.append('bsearch', id);
+        console.log("id is"+id);
+        xmlHttp.send(data); 
+        
+  
+    });
+}
+
+
+
+
+}
+
+    </script>
+    
+</body>
+</html>

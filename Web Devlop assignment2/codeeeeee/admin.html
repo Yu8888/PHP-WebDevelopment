@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label for="bsearch">Search Bookings</label>
+        <input type="number" name="bsearch" id="bsearch" class="formVal"><br>
+        <input type="submit" id="submit" name="sbutton" onclick="myFunction(father);return false;">
+    </form>
+    <div class="content"></div>
+    <script>
+
+         function myFunction(callback){	 
+            const div = document.querySelector('.content');
+            var elements = document.getElementsByClassName("formVal");
+            var formData = new FormData(); 
+         for(var i=0; i<elements.length; i++)
+        {
+        formData.append(elements[i].name, elements[i].value);
+        }
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function()
+        {
+
+            if(xmlHttp.readyState == 4 && xmlHttp.status >= 200)
+            {
+               div.innerHTML = xmlHttp.responseText ;            }
+        }
+        xmlHttp.open("POST", "adminserver.php"); 
+        xmlHttp.send(formData); 
+        
+        setTimeout(callback, 2000);
+}
+
+
+
+function father(){
+    var i;
+    var td = document.querySelectorAll('.td');
+    var button = document.querySelectorAll('.button');
+
+
+ console.log("foreach starts");
+
+button.forEach(buttonfun)
+
+function buttonfun(btn,index){
+    const id =btn.id;
+    // btn.setAttribute('lock', `${index}`);
+    btn.addEventListener('click',function(){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function()
+        {
+
+            if(xmlHttp.readyState == 4 && xmlHttp.status >= 200)
+            { 
+                // var num = button[lock].lock;
+                alert(xmlHttp.responseText);
+                td[index].innerHTML=xmlHttp.responseText;
+        }
+    }
+        xmlHttp.open("POST", "adminserver.php"); 
+       
+        var data = new FormData();
+        
+        data.append('id', id);
+        console.log("id is"+id);
+        // xmlHttp.send(`id=${str}`); 
+        xmlHttp.send(data); 
+        // var num = Number(id);
+  
+    });
+}
+
+
+
+
+
+// for (i = 0; i < button.length; i++) {
+//     // console.log("button length" + button.length)
+//     var lock = i;
+//     const id =button[i].id;
+
+   
+//     // var lockid = id;
+//     button[lock].setAttribute('lock', `${lock}`);
+//     var arr =[];
+//      arr = button[lock].setAttribute('lock', `${lock}`);
+//     button[lock].setAttribute('idd', `${id}`);
+//     var f = 0;
+//     button[lock].addEventListener('click',function(){
+//         var xmlHttp = new XMLHttpRequest();
+//         xmlHttp.onreadystatechange = function()
+//         {
+
+//             if(xmlHttp.readyState == 4 && xmlHttp.status >= 200)
+//             { var num = button[lock].lock;
+//                 alert(xmlHttp.responseText);
+//                 td[0].innerHTML=xmlHttp.responseText;
+//         }
+//     }
+//         xmlHttp.open("POST", "adminserver.php"); 
+//         console.log("f "+f);
+//         var data = new FormData();
+        
+//         data.append('id', id);
+//         console.log("id is"+id);
+//         // xmlHttp.send(`id=${str}`); 
+//         xmlHttp.send(data); 
+//         // var num = Number(id);
+//         f++;
+//     });
+    
+//   }
+}
+
+
+    </script>
+</body>
+</html>
