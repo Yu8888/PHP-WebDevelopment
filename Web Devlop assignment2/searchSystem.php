@@ -27,8 +27,8 @@ if ($Search == null) {
         $timestampbooking = strtotime($resultt); // we picked up the number of seconds
 
         if (($timestampbooking > $timestampnow)) {
-            $finaltime = - ($timestampbooking - $timestampnow);
-            if ($finaltime <= (2 * 60 * 60)) {
+            $finaltime = $timestampbooking - $timestampnow;
+            if ($finaltime <= ( 60 * 60+(65*60))) {
                 $sql5 = "SELECT bookingNumber,cname,phoneNumber,suburb,destinationSuburb,pickUpTime,status1 FROM assign2 WHERE status1 = 'unassigned' AND pickUpTime = '$resultt' ";
                 $data = mysqli_query($conn, $sql5);
                 if (!$data == null) {
@@ -58,9 +58,42 @@ if ($Search == null) {
                 } else {
                     echo "cant get data<br>";
                 }
-            } else {
-                echo "ssss";
+            } else if($finaltime > (2 * 60 * 60)){
+                // echo"123";
             }
+        } else if($timestampbooking <= $timestampnow){
+            $finaltime = $timestampnow - $timestampbooking;
+            if ($finaltime <= ( 2*60 )) {
+                $sql6 = "SELECT bookingNumber,cname,phoneNumber,suburb,destinationSuburb,pickUpTime,status1 FROM assign2 WHERE status1 = 'unassigned' AND pickUpTime = '$resultt' ";
+                $data2 = mysqli_query($conn, $sql6);
+                if (!$data2 == null) {
+                    foreach ($data2 as $q) {
+                        echo '<table border="1">
+                        <tr>
+                          <th>bookingNumber</th>
+                          <th>cname</th>
+                          <th>phoneNumber</th>
+                          <th>suburb</th>
+                          <th>destinationSuburb</th>
+                          <th>pickUpTime</th>
+                          <th>status1</th>
+                        </tr>
+                        <tr>
+                          <td>'.$q["bookingNumber"].'</td>
+                          <td>'.$q["cname"].'</td>
+                          <td>'.$q["phoneNumber"].'</td>
+                          <td>'.$q["suburb"].'</td>
+                          <td>'.$q["destinationSuburb"].'</td>
+                          <td>'.$q["pickUpTime"].'</td>
+                          <td id="'.$q["bookingNumber"].'" class="td" >'.$q["status1"].'</td>
+                          <td><input type="submit" id="'.$q["bookingNumber"].'" value="Assign" class="button" /></td>
+                        </tr>
+                        </table>';
+                    }
+                } else {
+                    echo "cant get data<br>";
+                }
+            } 
         }
     }
 } else if (!$Search == null) {
@@ -89,9 +122,9 @@ if ($Search == null) {
             
             }
 
- else {
+ else if($Search==0) {
 
-    echo"wrong";
+    echo "Sorry, this booking number is not at database!";
     
 }
 

@@ -9,7 +9,7 @@
 <body>
     <h1>Booking Search</h1>
     <form>
-    Search bookings: <input type="text" name="bsearch" class="2">
+    Search bookings: <input type="text" id ="search" name="bsearch" class="2">
     
     </form>
     <input type="submit" name="sbutton" value="Search" onclick="myFunction(father);return false;">
@@ -19,8 +19,14 @@
     <script>
         function myFunction(callback) {
             const p = document.querySelector('p');
+            const search = document.getElementById("search");
+            const regg = new RegExp('^[0-9]{0,6}$')
             var elements = document.getElementsByClassName("2");
             var formData = new FormData();
+            if(!regg.test(search.value)){
+                alert("Sorry, please input number to search!")
+            }
+            else{
             for (var i = 0; i < elements.length; i++) {
                 formData.append(elements[i].name, elements[i].value);
             }
@@ -36,7 +42,7 @@
 
             setTimeout(callback, 2000);
         }
-
+    }
         function father(){
     var i;
     var td = document.querySelectorAll('.td');

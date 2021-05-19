@@ -6,25 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <scrip type="text/javascript" src="ajax.js"> </scrip> -->
-
 
 </head>
 
 <body>
     <h1>Customer Booking System</h1>
-    <form>
+    <form name="form" >
         <br> Name:<input type="text" name="cname" id="1" class="1"><br />
         <br>Phone Number:<input type="text" name="phone" maxlength="12" minlength="10" id="2" class="1"><br />
         <br>Unit Number:<input type="number" name="unnumber" id="3" class="1"><br />
-        <br>Street Number:<input type="number" name="snumber" id="4" class="1"><br />
-        <br>Street Name:<input type="text" name="stname" id="5" class="1"><br />
+        <br>Street Number:<input type="number" name="snumber" id="4" class="1" ><br />
+        <br>Street Name:<input type="text" name="stname" id="5" class="1" required="required"><br />
         <br>Suburb:<input type="text" name="sbname" id="6" class="1"><br />
         <br>Destination Suburb:<input type="text" name="dsbname" id="7" class="1"><br />
 
         <br>Pick-up Date:<input type="text" name="PickDate" id="today" class="1"><br />
 
         <br>Pick-up Time:<input type="text" name="PickTime" id="today1" class="1"> <br />
+        <td width="100"><input type="submit" value="Post" id="submit" onclick="myFunction();return false;"></td>
+    <td width="100"><input type="reset" value="Reset"></td>
     </form>
     <div>
         <p name='reference'></p>
@@ -58,10 +58,36 @@
         document.getElementById("today").value = today().toLocaleString();
         document.getElementById("today1").value = today1().toLocaleString();
 
+
         function myFunction() {
             const p = document.querySelector('p');
-            var elements = document.getElementsByClassName("1");
+            // Here we marked all the class label which class name is 1.
+            var reg = /^[0-9]{10,12}$/;
+            var cc = document.getElementById("2").value;
+            if ( document.getElementById("1").value=="")
+            {
+            alert('Please input client name');
+        }
+            else if(document.getElementById("2").value=="" || reg.test(cc)==false){
+                alert('Please input phone number with length between 10-12');
+            }
+            else if(document.getElementById("4").value==""){
+                alert('Please input street number');
+            }
+            else if(document.getElementById("5").value==""){
+                alert('Please input street name');
+            }
+            else if(document.getElementById("today").value==""){
+                alert('Please input pick-up date');
+            }
+            else if(document.getElementById("today1").value==""){
+                alert('Please input pick-up time');
+            }
+
+else{
+    var elements = document.getElementsByClassName("1");
             var formData = new FormData();
+            // There we use for loop to get all values of what we have marked.
             for (var i = 0; i < elements.length; i++) {
                 formData.append(elements[i].name, elements[i].value);
             }
@@ -73,12 +99,12 @@
             }
             xmlHttp.open("POST", "bookingSystem.php");
             xmlHttp.send(formData);
+}  
         }
 
     </script>
 
-    <td width="100"><input type="submit" value="Post" id="submit" onclick="myFunction()"></td>
-    <td width="100"><input type="reset" value="Reset"></td>
+    
 
  
 
