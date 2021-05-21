@@ -15,19 +15,23 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM assign2";
 $result1 = mysqli_query($conn, $sql);
 
-
+// the case if users do not input anything
 if ($Search == null) {
     $today = date("H:i");
-    $timestampnow = strtotime($today); // the time will become to number of seconds now
+    // the time will become to number of seconds now
+    $timestampnow = strtotime($today); 
     $sqll = "SELECT pickUpTime FROM assign2";
     $result2 = mysqli_query($conn, $sqll);
 
     foreach ($result2 as $time) {
         $resultt = $time['pickUpTime'];
-        $timestampbooking = strtotime($resultt); // we picked up the number of seconds
-
+        // we picked up the number of seconds
+        $timestampbooking = strtotime($resultt); 
+        // Here we compare the time stamp of now and time stamp form use's input
+        // It will check whether the input time is earlier than now. 
         if (($timestampbooking > $timestampnow)) {
             $finaltime = $timestampbooking - $timestampnow;
+            // It will check whether the input time is 2 hours later than now.
             if ($finaltime <= ( 2 * 60 * 60)) {
                 $sql5 = "SELECT bookingNumber,cname,phoneNumber,suburb,destinationSuburb,pickUpTime,status1 FROM assign2 WHERE status1 = 'unassigned' AND pickUpTime = '$resultt' ";
                 $data = mysqli_query($conn, $sql5);
@@ -61,8 +65,11 @@ if ($Search == null) {
             } else if($finaltime > (2 * 60 * 60)){
                 // echo"123";
             }
-        } else if($timestampbooking <= $timestampnow){
+        }
+        // It is the case if the time is now or earlier than now.
+         else if($timestampbooking <= $timestampnow){
             $finaltime = $timestampnow - $timestampbooking;
+            //the case when earlier 60 seconds than now.
             if ($finaltime <= ( 60 )) {
                 $sql6 = "SELECT bookingNumber,cname,phoneNumber,suburb,destinationSuburb,pickUpTime,status1 FROM assign2 WHERE status1 = 'unassigned' AND pickUpTime = '$resultt' ";
                 $data2 = mysqli_query($conn, $sql6);
@@ -96,7 +103,9 @@ if ($Search == null) {
             } 
         }
     }
-} else if (!$Search == null) {
+} 
+// if the users input something
+else if (!$Search == null) {
     
     $sql0 = "select status1 from assign2 where bookingNumber='$Search'";
     $sqlp = "select bookingNumber from assign2 where bookingNumber='$Search'";
@@ -106,10 +115,11 @@ if ($Search == null) {
     $result5 = mysqli_query($conn, $sqlp);
     $row1 = mysqli_fetch_array($result4);
     $row2 = mysqli_fetch_array($result5);
-
+        // if system can not find the input number from database.
         if ($Search != $row2['bookingNumber']) {
             echo "Sorry, this booking number is not at database!";
         } 
+        // if the booking number is assigned already
           else if ($Search == $row2['bookingNumber'] && $row1['status1']=='assigned') {
             echo"Your booking number has been assigned already, no need to assign again!";
           }

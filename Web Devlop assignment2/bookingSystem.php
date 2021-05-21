@@ -15,8 +15,11 @@ $u = $_POST['dsbname'];
 $i = $_POST['PickDate'];
 $o = $_POST['PickTime'];
 
-$currentDateTime = date('d-m-Y');
+	// Here we get the current day and time as booking day and booking time, 
+	// for each posted booking from the users, the current booking day and
+	// current booking will be recorded automatically in the database.    
 
+$currentDateTime = date('d-m-Y');
 date_default_timezone_set('Pacific/Auckland');
 $currentDateTime1 = date_default_timezone_get();
 $currentDateTime1 = date('H:i');
