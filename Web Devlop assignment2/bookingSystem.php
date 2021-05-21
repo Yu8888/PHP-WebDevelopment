@@ -60,7 +60,7 @@ if (isset($data1)) {
        
     }
 
-    echo 'Thank you! Your booking reference number is' . $id['bookingNumber'] . '. You will be picked up in front of your provided address at ' . $o . ' on ' . $i . '.';
+    echo 'Thank you! Your booking reference number is ' . $id['bookingNumber'] . '. You will be picked up in front of your provided address at ' . $o . ' on ' . $i . '.';
 } else {
     echo "error";
 }

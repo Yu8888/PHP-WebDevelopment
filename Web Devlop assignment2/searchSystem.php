@@ -63,7 +63,7 @@ if ($Search == null) {
             }
         } else if($timestampbooking <= $timestampnow){
             $finaltime = $timestampnow - $timestampbooking;
-            if ($finaltime <= ( 2*60 )) {
+            if ($finaltime <= ( 60 )) {
                 $sql6 = "SELECT bookingNumber,cname,phoneNumber,suburb,destinationSuburb,pickUpTime,status1 FROM assign2 WHERE status1 = 'unassigned' AND pickUpTime = '$resultt' ";
                 $data2 = mysqli_query($conn, $sql6);
                 if (!$data2 == null) {

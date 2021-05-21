@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <link rel="stylesheet" href="./bookingstyle.css">
 </head>
 
 <body>
     <h1>Customer Booking System</h1>
+    <div class="y">
     <form name="form" >
         <br> Name:<input type="text" name="cname" id="1" class="1"><br />
         <br>Phone Number:<input type="text" name="phone" maxlength="12" minlength="10" id="2" class="1"><br />
@@ -24,8 +25,9 @@
 
         <br>Pick-up Time:<input type="text" name="PickTime" id="today1" class="1"> <br />
         <td width="100"><input type="submit" value="Post" id="submit" onclick="myFunction();return false;"></td>
-    <td width="100"><input type="reset" value="Reset"></td>
+    <td width="100"><input type="reset" value="Reset" id="pp"></td>
     </form>
+    </div>
     <div>
         <p name='reference'></p>
     </div>
@@ -58,6 +60,9 @@
         document.getElementById("today").value = today().toLocaleString();
          document.getElementById("today1").value = today1().toLocaleString();
 
+    //      const timet = document.getElementById("today");
+    //    timet.value = today();
+
 
         function myFunction() {
             const p = document.querySelector('p');
@@ -70,7 +75,8 @@
             var regg = new RegExp("-","g");
             var a = date1.replace(regg,"");
             var b = date2.replace(regg,"");
-            
+            var c = Number(a);
+            var d = Number(b);
 
             if ( document.getElementById("1").value=="")
             {
@@ -88,7 +94,10 @@
             else if(document.getElementById("today").value==""){
                 alert('Please input pick-up date');
             }
-            else if(a>b){
+            // else if((parseInt(timet.value)*10000) < (parseInt(today())*10000)){
+            //     alert('You can not input earlier date!');
+            // }
+            else if(c>d){
                 alert('You can not input earlier date!');
             }
             else if(document.getElementById("today").value==""){
