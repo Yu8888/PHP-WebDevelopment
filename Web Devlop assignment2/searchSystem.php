@@ -28,7 +28,7 @@ if ($Search == null) {
 
         if (($timestampbooking > $timestampnow)) {
             $finaltime = $timestampbooking - $timestampnow;
-            if ($finaltime <= ( 60 * 60+(65*60))) {
+            if ($finaltime <= ( 2 * 60 * 60)) {
                 $sql5 = "SELECT bookingNumber,cname,phoneNumber,suburb,destinationSuburb,pickUpTime,status1 FROM assign2 WHERE status1 = 'unassigned' AND pickUpTime = '$resultt' ";
                 $data = mysqli_query($conn, $sql5);
                 if (!$data == null) {

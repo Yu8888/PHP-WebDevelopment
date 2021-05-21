@@ -56,14 +56,22 @@
             return H + ":" + M;
         }
         document.getElementById("today").value = today().toLocaleString();
-        document.getElementById("today1").value = today1().toLocaleString();
+         document.getElementById("today1").value = today1().toLocaleString();
 
 
         function myFunction() {
             const p = document.querySelector('p');
-            // Here we marked all the class label which class name is 1.
+            
             var reg = /^[0-9]{10,12}$/;
             var cc = document.getElementById("2").value;
+            var qqq = today1().toLocaleString();
+            var date1 = today();
+            var date2 = document.getElementById("today").value;
+            var regg = new RegExp("-","g");
+            var a = date1.replace(regg,"");
+            var b = date2.replace(regg,"");
+            
+
             if ( document.getElementById("1").value=="")
             {
             alert('Please input client name');
@@ -80,12 +88,23 @@
             else if(document.getElementById("today").value==""){
                 alert('Please input pick-up date');
             }
-            else if(document.getElementById("today1").value==""){
+            else if(a>b){
+                alert('You can not input earlier date!');
+            }
+            else if(document.getElementById("today").value==""){
+                alert('Please input pick-up date');
+            }
+            else if(document.getElementById("today1").value=="" ){
                 alert('Please input pick-up time');
+            }
+            else if(document.getElementById("today1").value<qqq){
+                alert('You can not input previous time!');
             }
 
 else{
+    // Here we marked all the class label which class name is 1.
     var elements = document.getElementsByClassName("1");
+            
             var formData = new FormData();
             // There we use for loop to get all values of what we have marked.
             for (var i = 0; i < elements.length; i++) {

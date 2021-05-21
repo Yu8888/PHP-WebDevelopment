@@ -24,7 +24,7 @@
             var elements = document.getElementsByClassName("2");
             var formData = new FormData();
             if(!regg.test(search.value)){
-                alert("Sorry, please input number to search!")
+                alert("Sorry, please input positive number to search!")
             }
             else{
             for (var i = 0; i < elements.length; i++) {
@@ -44,9 +44,9 @@
         }
     }
         function father(){
-    var i;
-    var td = document.querySelectorAll('.td');
-    var button = document.querySelectorAll('.button');
+        var i;
+        var td = document.querySelectorAll('.td');
+        var button = document.querySelectorAll('.button');
 
 
  console.log("foreach starts");
