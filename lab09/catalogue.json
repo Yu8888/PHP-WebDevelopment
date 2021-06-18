@@ -1,0 +1,7 @@
+{
+    "book": ["Beginning ASP.NET with CSharp", "Why people photograph", "The Negative"],
+    "author": ["Hart, Kauffman, Sussman, Ullman", "Robert Adams", "Ansel Adams Photography"],
+    "isbn": ["0764588508", "098799", "0989807"],
+    "price": ["$39.99", "$52", "$62"],
+    "img": ["begaspnet.jpg", "images.jpg", "666.jpg"]
+}

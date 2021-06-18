@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Constructors</h2>
+
+<p id="demo"></p>
+
+<script>
+
+var record=function record(name, email) {
+  this.name = name;
+  this.email = email;
+  this.print = function() {
+    return ("<p>"+this.name + " | " + this.email+"</p>");
+  };
+};
+
+function dbs() {
+  this.values = new Array();
+};
+dbs.prototype.add=function(name, email){
+	var newrow=new record(name, email);
+	this.values[this.values.length]=newrow;
+}
+dbs.prototype.printdbs=function(){
+	var result="";
+	for(var i=0;i<this.values.length;i++){
+	result+=this.values[i].print();}
+	return result;
+}
+// Create 3 Person objects
+var r1 = new dbs();
+
+r1.add("dennis","dennis@gmail.com");
+r1.add("Try","Try@gmail.com");
+r1.add("Our","Our.com");
+
+</script>
+<input type="button" value=" show the result " onclick='document.getElementById("demo").innerHTML =
+r1.printdbs()'><br>
+
+
+
+
+
+
+
+</body>
+</html>
+
+</html>

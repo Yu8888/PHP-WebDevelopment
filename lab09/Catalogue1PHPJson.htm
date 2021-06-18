@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+ <script type="text/javascript" src="CartJson.js"></script>  
+</head>
+  <body onload="getCatalogue()">
+    <br/>
+    <div id="catalogue">
+
+    </div>
+    <br /><br />
+    <table class="table table-striped" border='1' id="cart">
+      <tr>
+        <th>Book</th>
+        <th>ISBN</th>
+        <th>Quantity</th>
+		 <th>Remove from shopping cart</th>
+		<th>Select this item</th>
+       
+      </tr>
+
+    </table>
+    <br>
+    <span id="total-cost"></span>
+    <br>
+    <button type="button" class="btn btn-danger" onclick="reset()">Reset</button>
+  </body>
+</html>
